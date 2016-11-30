@@ -56,7 +56,7 @@ Vue.component('todo-item', {
     // This prop is called todo.
     props: ['todo'],
     template: '<li>{{ todo.text }}</li>'
-})
+});
 //have data for vue component groceryList binded to todo props
 var app7 = new Vue({
     el: '#app-7',
@@ -69,7 +69,22 @@ var app7 = new Vue({
     }
 })
 
+Vue.component("app-test", {
+    props: ['prop'],
+    template: '<h2> this is a template </h2>'
+});
 
+var apptest = new Vue({
+   el: '#apptest',
+    data:{
+        text: "test"
+    }
+});
+
+
+
+
+/***** COMPONENT *****/
 
 
 
