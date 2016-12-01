@@ -84,7 +84,7 @@ var apptest = new Vue({
 
 
 
-/***** COMPONENT *****/
+
 
 
 
