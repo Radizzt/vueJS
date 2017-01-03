@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 <body>
 
@@ -64,18 +65,33 @@
 <h2>Syntax</h2>
 <h3>Interpolation:</h3>
 
+<h4>text:</h4>
+<div id="syntax-1">
+    <span>Message: ({{msg}}) - Change text in console 'syn1.msg' </span>
+    <!--make all property static-->
+    <p v-once>This message can never be change: ({{staticMsg}}) - 'syn1.staticMsg' </p>
+</div>
+
+<h4>Raw HTML:</h4>
+<div id="syntax-2">
+    <p>message: {{msg}}</p>
+    <!--insert raw html-->
+    <p v-html="rawHtml">{{rawHtml}}</p>
+
+</div>
+
 <h4>dynamic attribute (id)</h4>
 <div class="attrib" v-bind:id="dynamicId">
     <p>{{att}}</p>
 </div>
 
 <h4>expressional data (ONLY SINGLE EXPRESSION)</h4>
-<div id="app-8">
+<div id="syntax-3">
     <p>{{ok ? 'yes' : 'no' }}</p>
 </div>
 
-<h4>Directive</h4>
-
+<h3>Directive</h3>
+<span class="info">Directives are special attributes with the v- prefix. Directive attribute values are expected to be a single JavaScript expression (with the exception for v-for, which will be discussed later). A directive’s job is to reactively apply side effects to the DOM when the value of its expression changes.</span>
 
 <hr>
 

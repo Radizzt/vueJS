@@ -1,16 +1,38 @@
 
-var vm = new Vue({
-   el: ".attrib",
+
+//text
+var syn1 = new Vue({
+    el: "#syntax-1",
     data: {
-        dynamicId : "weee",
-        att:"attribute",
+        msg: "hello world",
+        staticMsg: "never change" //static property
+    }
+});
+
+//rawHTML
+var syn2 = new Vue({
+   el: "#syntax-2",
+    data: {
+        msg: "raw HTML",
+        rawHtml: "<a href='http://www.google.ca'> Google link </a>" //sending Raw HTML - WARNING: CAREFUL OF XSS
+    }
+
+});
+
+//Attribute
+var vm = new Vue({
+    el: ".attrib",
+    data: {
+        dynamicId : "weeesdsds",
+        att:"attributesss",
         rawHtml: "raw"
     }
 });
 
-var app8 = new Vue({
-    el: "#app-8",
+//argument
+var syn3 = new Vue({
+    el: "#syntax-3",
    data: {
-       ok : false
+       ok : "something"
    }
 });
