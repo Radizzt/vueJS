@@ -50,15 +50,34 @@
     </ol>
 </div>
 
+
+
 <div id="apptest">
     <app-test></app-test>
 </div>
 
+<hr>
+<h2>Instances and <a href="https://vuejs.org/images/lifecycle.png"> lifecycles</a></h2>
 <p id="example">{{a}}</p>
 
+<hr>
+<h2>Syntax</h2>
+<h3>Interpolation:</h3>
+
+<h4>dynamic attribute (id)</h4>
+<div class="attrib" v-bind:id="dynamicId">
+    <p>{{att}}</p>
+</div>
+
+<h4>expressional data (ONLY SINGLE EXPRESSION)</h4>
+<div id="app-8">
+    <p>{{ok ? 'yes' : 'no' }}</p>
+</div>
+
+<h4>Directive</h4>
 
 
-
+<hr>
 
 <script
         src="https://code.jquery.com/jquery-3.1.1.min.js"
@@ -67,5 +86,6 @@
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 <script src="js/core.js"></script>
 <script src="js/instances.js"></script>
+<script src="js/syntax.js"></script>
 </body>
 </html>
