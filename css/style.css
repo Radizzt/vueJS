@@ -3,12 +3,13 @@
     color: #565656;
 }
 
-h3{
+h3, h4{
     margin-bottom:0.2rem;
 }
 
 body{background-color: #191b1c;
     color: #e1deb1;
+    margin-bottom:5rem;
 }
 
 a{

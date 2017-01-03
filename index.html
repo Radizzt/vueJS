@@ -89,11 +89,42 @@
 <div id="syntax-3">
     <p>{{ok ? 'yes' : 'no' }}</p>
 </div>
-
+<hr>
 <h3>Directive</h3>
 <span class="info">Directives are special attributes with the v- prefix. Directive attribute values are expected to be a single JavaScript expression (with the exception for v-for, which will be discussed later). A directive’s job is to reactively apply side effects to the DOM when the value of its expression changes.</span>
 
-<hr>
+<div id="syntax-4">
+    <p v-if="seen">Now you see me</p>
+</div>
+
+<h4>arguments</h4>
+<span class="info">Some directives can take an “argument”, denoted by a colon after the directive name. For example, the v-bind directive is used to reactively update an HTML attribute:</span>
+<div id="syntax-5">
+    <a v-bind:href="url">Google link</a>
+    <button v-on:click="doSomething">click me</button>
+</div>
+
+<h4>modifiers</h4>
+<span class="info">Modifiers are special postfixes denoted by a dot, which indicate that a directive should be bound in some special way. For example, the .prevent modifier tells the v-on directive to call event.preventDefault() on the triggered event:</span>
+<form v-on:submit.prevent="onSubmit" id="form1">
+    <input type="submit">
+</form>
+
+<h4>filter</h4>
+<span class="info">Vue.js allows you to define filters that can be used to apply common text formatting. Filters are usable in two places: <span style="font-weight: bold">mustache interpolations</span> and <span style="font-weight: bold">v-bind expressions</span>. Filters should be appended to the end of the JavaScript expression, denoted by the “pipe” symbol:</span>
+
+<div id="syntax-6">
+    <div><!-- in mustaches -->
+        {{ message | capitalize | lastCap | foo(' second arg', ' third arg') }}
+
+    </div>
+</div>
+
+<h4>Shorthand:</h4>
+<span class="info">The v- prefix serves as a visual cue for identifying Vue-specific attributes in your templates. This is useful when you are using Vue.js to apply dynamic behavior to some existing markup, but can feel verbose for some frequently used directives. At the same time, the need for the v- prefix becomes less important when you are building an SPA where Vue.js manages every template. Therefore, Vue.js provides special shorthands for two of the most often used directives, v-bind(":") and v-on ('@')</span>
+
+<p>v-bind:href='url'. shorthand: :href='url'</p>
+<p>v-on:click='doSomething'. shorthand: @click='doSomething'</p>
 
 <script
         src="https://code.jquery.com/jquery-3.1.1.min.js"
