@@ -138,7 +138,7 @@
     <p>Now: {{now}}</p>
 </div>
 
-<h3>Computed Caching vs Methods</h3>
+<h4>Computed Caching vs Methods</h4>
 <span class="info">You may have noticed we can achieve the same result by invoking a method in the expression:</span>
 
 <div id="comp2">
@@ -148,7 +148,7 @@
 </div>
 <p class="info">Instead of a computed property, we can define the same function as a method instead. For the end result, the two approaches are indeed exactly the same. However, the difference is that <span class="bold">computed properties are cached based on their dependencies.</span> A computed property will only re-evaluate when some of its dependencies have changed. This means as long as message has not changed, multiple access to the reversedMessage computed property will immediately return the previously computed result without having to run the function again.<br> In comparison, a method invocation will <span class="bold">always </span>run the function whenever a re-render happens. </p>
 
-<h3>Computed vs Watched Property</h3>
+<h4>Computed vs Watched Property</h4>
 <span class="info">Vue does provide a more generic way to observe and react to data changes on a Vue instance: <span class="bold">watch properties.</span> When you have some data that needs to change based on some other data, it is tempting to overuse watch - especially if you are coming from an AngularJS background. However, it is often a better idea to use a computed property rather than an imperative watch callback.</span>
 
 <div id="comp3">
@@ -161,18 +161,46 @@
     <p>{{ fullName }}</p>
 </div>
 
-<h3>Computed Setter</h3>
+<h4>Computed Setter</h4>
 <span class="info">Computed properties are by default getter-only, but you can also provide a setter when you need it (comp5.fullName = ''):</span>
 
 <div id="comp5">
     <p>{{ fullName }}</p>
 </div>
 
+<h3>Watcher</h3>
+<span class="info">While computed properties are more appropriate in most cases, there are times when a custom watcher is necessary. That’s why Vue provides a more generic way to react to data changes through the watch option. This is most useful when you want to perform asynchronous or expensive operations in response to changing data.</span>
+
+
+<div id="watch1">
+    <p>
+        Ask a yes/no question:
+        <input v-model="question">
+    </p>
+    <p>{{answer}}</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
 <script
         src="https://code.jquery.com/jquery-3.1.1.min.js"
         integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
         crossorigin="anonymous"></script>
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
+<!-- Since there is already a rich ecosystem of ajax libraries    -->
+<!-- and collections of general-purpose utility methods, Vue core -->
+<!-- is able to remain small by not reinventing them. This also   -->
+<!-- gives you the freedom to just use what you're familiar with. -->
+<script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
+<script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
 <script src="js/core.js"></script>
 <script src="js/instances.js"></script>
 <script src="js/syntax.js"></script>
