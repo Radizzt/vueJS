@@ -1,5 +1,4 @@
 
-
 //text
 var syn1 = new Vue({
     el: "#syntax-1",
@@ -97,6 +96,10 @@ new Vue({
         }
     }
 });
+
+
+
+
 
 
 

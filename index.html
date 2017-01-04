@@ -125,6 +125,48 @@
 
 <p>v-bind:href='url'. shorthand: :href='url'</p>
 <p>v-on:click='doSomething'. shorthand: @click='doSomething'</p>
+<hr>
+
+<h2>Computed Properties and Watchers</h2>
+<span class="info">In-template expressions are very convenient, but they are really only meant for simple operations. Putting too much logic into your templates can make them bloated and hard to maintain.</span>
+
+
+<h3>Computed Property</h3>
+<div id="comp1">
+    <p>Original message: "{{ message }}"</p>
+    <p>Computed reversed message: "{{ reversedMessage }}"</p>
+    <p>Now: {{now}}</p>
+</div>
+
+<h3>Computed Caching vs Methods</h3>
+<span class="info">You may have noticed we can achieve the same result by invoking a method in the expression:</span>
+
+<div id="comp2">
+    <p>Original message: "{{ message }}"</p>
+    <p>Computed reversed message: "{{ reversedMessage() }}"</p>
+    <p>Now: {{now()}}</p>
+</div>
+<p class="info">Instead of a computed property, we can define the same function as a method instead. For the end result, the two approaches are indeed exactly the same. However, the difference is that <span class="bold">computed properties are cached based on their dependencies.</span> A computed property will only re-evaluate when some of its dependencies have changed. This means as long as message has not changed, multiple access to the reversedMessage computed property will immediately return the previously computed result without having to run the function again.<br> In comparison, a method invocation will <span class="bold">always </span>run the function whenever a re-render happens. </p>
+
+<h3>Computed vs Watched Property</h3>
+<span class="info">Vue does provide a more generic way to observe and react to data changes on a Vue instance: <span class="bold">watch properties.</span> When you have some data that needs to change based on some other data, it is tempting to overuse watch - especially if you are coming from an AngularJS background. However, it is often a better idea to use a computed property rather than an imperative watch callback.</span>
+
+<div id="comp3">
+    <p>{{ fullName }}</p>
+</div>
+
+<span class="info">vs computed version (Look into the JS file):</span>
+
+<div id="comp4">
+    <p>{{ fullName }}</p>
+</div>
+
+<h3>Computed Setter</h3>
+<span class="info">Computed properties are by default getter-only, but you can also provide a setter when you need it (comp5.fullName = ''):</span>
+
+<div id="comp5">
+    <p>{{ fullName }}</p>
+</div>
 
 <script
         src="https://code.jquery.com/jquery-3.1.1.min.js"
@@ -134,5 +176,6 @@
 <script src="js/core.js"></script>
 <script src="js/instances.js"></script>
 <script src="js/syntax.js"></script>
+<script src="js/computed_properties_and_watcher.js"></script>
 </body>
 </html>

@@ -3,6 +3,10 @@
     color: #565656;
 }
 
+.bold{
+    font-weight: bold;
+}
+
 h3, h4{
     margin-bottom:0.2rem;
 }
