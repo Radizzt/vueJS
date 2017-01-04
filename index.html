@@ -180,13 +180,45 @@
     <p>{{answer}}</p>
 </div>
 
+<h2>Class and Style Binding</h2>
+<span class="info">A common need for data binding is manipulating an element’s class list and its inline styles. Since they are both attributes, we can use v-bind to handle them: we just need to calculate a final string with our expressions. However, meddling with string concatenation is annoying and error-prone. For this reason, Vue provides special enhancements when v-bind is used with class and style. In addition to strings, the expressions can also evaluate to objects or arrays.</span>
 
+<h3>Binding HTML Classes</h3>
 
+<h4>Object Syntax</h4>
+<span class="info">We can pass an object to v-bind:class to dynamically toggle classes:</span>
 
+<div id="class1">
+    <!--inline-->
+    <div class="staticClass" v-bind:class="{active: isActive, 'text-danger': hasError }">
+        <p>{{message}}</p>
+    </div>
+    <!--external-->
+    <div class="staticClass" v-bind:class="classObject">
+        <p>{{message}}</p>
+    </div>
+    <!--computed property-->
+    <div class="staticClass" v-bind:class="computedObject">
+        <p>{{message}}</p>
+    </div>
+</div>
 
+<h4>Array Syntax</h4>
+<span class="info">We can pass an array to v-bind:class to apply a list of classes:</span>
 
-
-
+<div id="class2">
+    <div v-bind:class="[activeClass, errorClass]">
+        <p>{{message}}</p>
+    </div>
+    <!--ternary expression to toggle-->
+    <div  v-bind:class="[isActive ? activeClass : errorClass]">
+        <p>{{message}}</p>
+    </div>
+    <!--object syntax within an array syntax-->
+    <div  v-bind:class="[{activeClass : isActive}, errorClass]">
+        <p>{{message}}</p>
+    </div>
+</div>
 
 
 
@@ -205,5 +237,6 @@
 <script src="js/instances.js"></script>
 <script src="js/syntax.js"></script>
 <script src="js/computed_properties_and_watcher.js"></script>
+<script src="js/class_style_binding.js"></script>
 </body>
 </html>
