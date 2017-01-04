@@ -34,7 +34,30 @@ var class2 = new Vue({
     }
 });
 
-
+/** Binding Inline Style **/
+/*Object Syntax*/
+var bind1 = new Vue({
+   el:"#bind1",
+    data:{
+        activeColor: 'red',
+        fontSize: 30,
+        styleObject:{
+            color: 'red',
+            'font-size': '13px'
+        },
+        baseStyles:{
+            color : "yellow"
+        },
+        overridingStyles:{
+            color:"purple"
+        },
+        transformObject:{
+            color : "pink",
+            position: 'relative',
+            transform: "translateX(30%)"
+        }
+    }
+});
 
 
 
