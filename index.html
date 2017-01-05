@@ -246,6 +246,83 @@
         <p>Array Style</p>
     </div>
 </div>
+<hr>
+<h2>Conditional Rendering</h2>
+<h3>v-if</h3>
+<div id="if1">
+    <span class="info">refresh window to retrigger the Math.random method</span>
+    <div v-if="Math.random() > 0.5">
+        <p>true</p>
+    </div>
+    <div v-else>
+        <p>false</p>
+    </div>
+    <!--Conditional Groups with v-if on <template>-->
+    <template v-if="ok">
+        <h1>title</h1>
+        <p>para1</p>
+        <p>para2</p>
+    </template>
+
+    <!--v-else-if conditioning-->
+    <div v-if="type === 'A'">
+        <p>A</p>
+    </div>
+    <div v-else-if="type === 'B'">
+        <p>B</p>
+    </div>
+    <div v-else-if="type === 'C'">
+        <p>C</p>
+    </div>
+    <div v-else>
+        <p>Not A/B/C</p>
+    </div>
+
+</div>
+
+<h3>Controlling Reusuable Elements with key</h3>
+
+<span class="info">Vue tries to render elements as efficiently as possible, often re-using them instead of rendering from scratch. Beyond helping make Vue very fast, this can have some useful advantages. For example, if you allow users to toggle between multiple login types:</span>
+
+<div id="if2">
+
+    <template v-if="loginType === 'username'">
+        <label>Username</label>
+        <input placeholder="Enter your username">
+    </template>
+    <template v-else>
+        <label>Email</label>
+        <input placeholder="Enter your email address">
+    </template>
+    <button v-on:click="toggle">Toggle login type</button>
+    <br>
+    <br />
+
+    <p>if this is not the desire effect you want, use <span class="bold">key attribute:</span></p>
+    <template v-if="loginType2 === 'username'">
+        <label>Username</label>
+        <input placeholder="Enter your username" key="username-input">
+    </template>
+    <template v-else>
+        <label>Email</label>
+        <input placeholder="Enter your email address" key="email-input">
+    </template>
+    <button v-on:click="toggle2">Toggle login type</button>
+
+</div>
+
+<h3>v-show</h3>
+<span class="info">
+    Another option for conditionally displaying an element is the v-show directive. <br>
+    The difference is that an element with v-show will always be rendered and remain in the DOM; v-show simply toggles the display CSS property of the element. <br>
+    ** Note that v-show doesn’t support the &lt;template&gt; syntax, nor does it work with v-else.
+</span>
+<div id="show1">
+    <button v-on:click="toggle">toggle</button>
+    <p v-show="ok">showing</p>
+</div>
+<span class="info">Generally speaking, v-if has higher toggle costs while v-show has higher initial render costs. So prefer v-show if you need to toggle something very often, and prefer v-if if the condition is unlikely to change at runtime.</span>
+
 
 
 
@@ -266,5 +343,6 @@
 <script src="js/syntax.js"></script>
 <script src="js/computed_properties_and_watcher.js"></script>
 <script src="js/class_style_binding.js"></script>
+<script src="js/conditional_rendering.js"></script>
 </body>
 </html>
