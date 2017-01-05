@@ -323,7 +323,73 @@
 </div>
 <span class="info">Generally speaking, v-if has higher toggle costs while v-show has higher initial render costs. So prefer v-show if you need to toggle something very often, and prefer v-if if the condition is unlikely to change at runtime.</span>
 
+<hr>
+<h2>List Rendering</h2>
+<h3>v-for</h3>
+<span class="info">
+    We can use the v-for directive to render a list of items based on an array. The v-for directive requires a special syntax in the form of item in items, where items is the source data array and item is an alias for the array element being iterated on:
+</span>
+<ul id="for1">
+    <li v-for="item in items">
+        {{ item.message}}
+    </li>
+    <!--support second argument for index number-->
+    <h4>index</h4>
+    <p class="info">Inside v-for blocks we have full access to parent scope properties. v-for also supports an optional second argument for the index of the current item.</p>
+    <li v-for="(item, index) in items2">
+        {{ parentMessage }} - {{index}} - {{ item.message}}
+    </li>
+    <!--template for v-for-->
+    <h4>template v-for</h4>
+    <p class="info">Similar to template v-if, you can also use a &lt;template&gt; tag with v-for to render a block of multiple elements. For example:</p>
+    <template v-for="item in forItem">
+        <li>{{item.msg}}</li>
+    </template>
+    <!--object v-for-->
+    <h4>object v-for</h4>
+    <p class="info">You can also use v-for to iterate through the properties of an object.</p>
+    <li v-for="value in object">
+        {{value}}
+    </li>
+    <!--key and index for object-->
+    <h4>key and object for object</h4>
+    <p class="info">You can also provide a second argument for the key, and another for index</p>
+    <li v-for="(value, key, index) in object">
+        {{index}}. {{key}} : {{value}}
+    </li>
+    <!--range-->
+    <h4>Range v-for</h4>
+    <p class="info">v-for can also take an integer. In this case it will repeat the template that many times.
+    <li>
+        <span v-for="n in 10">{{ n }}</span>
+    </li>
+    <h4>v-for with v-if</h4>
+    <p class="info">When they exists on the same node, v-for has a higher priority than v-if. That means the v-if will be run on each iteration of the loop separately. This is very useful when you want to render nodes for only some items, like below:</p>
+    <li v-for="todo in todos" v-if="!todo.isComplete">
+        {{ todo.duty }}
+    </li>
 
+
+</ul>
+
+<!--component and v-for-->
+<h4>Component and v-for</h4>
+<p class="info">You can directly use v-for on a custom component, like any normal element:</p>
+<div id="todo-list-example">
+    <input
+            v-model="newTodoText"
+            v-on:keyup.enter="addNewTodo"
+            placeholder="Add a todo"
+    >
+    <ul>
+        <li
+                is="todo-item"
+                v-for="(todo, index) in todos"
+                v-bind:title="todo"
+                v-on:remove="todos.splice(index, 1)"
+        ></li>
+    </ul>
+</div>
 
 
 
@@ -344,5 +410,6 @@
 <script src="js/computed_properties_and_watcher.js"></script>
 <script src="js/class_style_binding.js"></script>
 <script src="js/conditional_rendering.js"></script>
+<script src="js/list_rendering.js"></script>
 </body>
 </html>
