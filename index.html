@@ -329,8 +329,12 @@
 <span class="info">
     We can use the v-for directive to render a list of items based on an array. The v-for directive requires a special syntax in the form of item in items, where items is the source data array and item is an alias for the array element being iterated on:
 </span>
+<h3>key</h3>
+<span class="info">When Vue is updating a list of elements rendered with v-for, it by default uses an “in-place patch” strategy. If the order of the data items has changed, instead of moving the DOM elements to match the order of the items, Vue will simply patch each element in-place and make sure it reflects what should be rendered at that particular index. This is similar to the behavior of track-by="$index" in Vue 1.x.
+This default mode is efficient, but only suitable <span class="bold">when your list render output does not rely on child component state or temporary DOM state (e.g. form input values).</span>
+To give Vue a hint so that it can track each node’s identity, and thus reuse and reorder existing elements, you need to provide a unique key attribute for each item. An ideal value for key would be the unique id of each item. This special attribute is a rough equivalent to track-by in 1.x, but it works like an attribute, so you need to use v-bind to bind it to dynamic values </span>
 <ul id="for1">
-    <li v-for="item in items">
+    <li v-for="item in items" :key="item.id">
         {{ item.message}}
     </li>
     <!--support second argument for index number-->
@@ -390,6 +394,42 @@
         ></li>
     </ul>
 </div>
+
+<h3>Array Change Detection</h3>
+
+<h4>Mutation Methods</h4>
+<div class="info">
+    <p>Vue wraps an observed array’s mutation methods so they will also trigger view updates. The wrapped methods are:</p>
+    <ul>
+        <li>push()</li>
+        <li>pop()</li>
+        <li>shift()</li>
+        <li>unshift()</li>
+        <li>splice()</li>
+        <li>sort()</li>
+        <li>reverse()</li>
+    </ul>
+    <p>You can open the console and play with the previous examples’ items array by calling their mutation methods. For example: example1.items.push({ message: 'Baz' }).</p>
+</div>
+<h4>Replacing an Array</h4>
+<p class="info">Mutation methods, as the name suggests, mutate the original array they are called on. In comparison, there are also non-mutating methods, e.g. filter(), concat() and slice(), which do not mutate the original Array but always return a new array.</p>
+
+<ul id="for2">
+    <button @click="replace">replace!</button>
+    <li v-for="item in items">
+        {{item.message}}
+    </li>
+
+    <h3>Displaying Filtered/Sorted Result</h3>
+    <p class="info">Sometimes we want to display a filtered or sorted version of an array without actually mutating or resetting the original data. In this case, you can create a computed property that returns the filtered or sorted array.</p>
+    <li v-for="n in evenNumbers">{{n}}</li>
+    <p class="info">method version:</p>
+    <li v-for="n in even(numbers)">{{n}}</li>
+</ul>
+
+
+
+
 
 
 
