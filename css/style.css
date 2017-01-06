@@ -9,13 +9,16 @@ body{background-color: #191b1c;
 }
 
 a{
-    color: darkblue;
+    color: #224fd0;
 }
 
 p{
     margin:0;
 }
 
+.orange{
+    color: orange;
+}
 .active{
     color: greenyellow;
     font-weight:bold;

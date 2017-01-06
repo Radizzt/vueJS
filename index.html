@@ -445,6 +445,69 @@ To give Vue a hint so that it can track each node’s identity, and thus reuse a
     <button v-on:click="say('what')">Say what</button>
     <p class="info">Sometimes we also need to access the original DOM event in an inline statement handler. You can pass it into a method using the special <span style="color: orange;">$event</span> variable:</p>
     <button v-on:click="warn('Form cannot be submitted yet.', $event)">Submit</button>
+    <h4>Event Modifiers</h4>
+    <p class="info">It is a very common need to call <span class="orange">event.preventDefault()</span> or <span class="orange">event.stopPropagation()</span> inside event handlers. Although we can do this easily inside methods, it would be better if the methods can be purely about data logic rather than having to deal with DOM event details.
+        To address this problem, Vue provides event modifiers for <span class="orange">v-on</span>. Recall that modifiers are directive postfixes denoted by a dot.</p>
+    <ul>
+        <li class="orange">.stop</li>
+        <li class="orange">.prevent</li>
+        <li class="orange">.capture</li>
+        <li class="orange">.self</li>
+        <li class="orange">.once</li>
+    </ul>
+
+    <!-- the click event's propagation will be stopped -->
+    <a v-on:click.stop="doThis">stop</a>
+    <!-- the submit event will no longer reload the page -->
+    <form v-on:submit.prevent="onSubmit">onSubmit</form>
+    <!-- modifiers can be chained -->
+    <a v-on:click.stop.prevent="doThat">stop prevent</a>
+    <!-- just the modifier -->
+    <form v-on:submit.prevent>prevent</form>
+    <!-- use capture mode when adding the event listener -->
+    <div v-on:click.capture="doThis">capture</div>
+    <!-- only trigger handler if event.target is the element itself -->
+    <!-- i.e. not from a child element -->
+    <div v-on:click.self="doThat">self</div>
+    <!-- the click event will be triggered at most once -->
+    <a v-on:click.once="doThis">once</a>
+
+    <h4>Key Modifiers</h4>
+    <p class="info">When listening for keyboard events, we often need to check for common key codes. Vue also allows adding key modifiers for v-on when listening for key events:</p>
+    <!-- only call vm.submit() when the keyCode is 13 -->
+    <input v-on:keyup.13="key">
+    <p class="info">Remembering all the keyCodes is a hassle, so Vue provides aliases for the most commonly used keys:</p>
+    <input type="text" @keyup.enter="key">
+    <p class="info">Here’s the full list of key modifier aliases:</p>
+    <ul>
+        <li class="orange">.enter</li>
+        <li class="orange">.tab</li>
+        <li class="orange">.delete <span style="color: #e1deb1;">(captures both "Delete" and "Backspace" keys</span></li>
+        <li class="orange">.esc</li>
+        <li class="orange">.space</li>
+        <li class="orange">.up</li>
+        <li class="orange">.down</li>
+        <li class="orange">.left</li>
+        <li class="orange">.right</li>
+        <li class="orange">.ctrl</li>
+        <li class="orange">.alt</li>
+        <li class="orange">.shift</li>
+        <li class="orange">.meta</li>
+    </ul>
+    <p class="info">You can also define custom key modifier aliases via the global config.keyCodes object: <br>
+        <!--enable v-on:keyup.f1-->
+    Vue.config.keyCode.f1 = 112;
+        <br>
+        list of <a href="http://help.adobe.com/en_US/AS2LCR/Flash_10.0/help.html?content=00000520.html">keycodes</a>
+        <br>
+        <span class="bold">Note: On Macintosh keyboards, meta is the command key (⌘). On Windows keyboards, meta is the windows key (⊞). On Sun Microsystems keyboards, meta is marked as a solid diamond (◆). On certain keyboards, specifically MIT and Lisp machine keyboards and successors, such as the Knight keyboard, space-cadet keyboard, meta is labeled “META”. On Symbolics keyboards, meta is labeled “META” or “Meta”.</span>
+    </p>
+    <input type="text" @keyup.f1="key" PLACEHOLDER="press f1">
+    <!-- Alt + C -->
+    <input @keyup.alt.67="clear">
+    <!-- Ctrl + Click -->
+    <div @click.ctrl="doSomething">Do something</div>
+
 </div>
 
 

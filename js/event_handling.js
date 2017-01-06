@@ -21,10 +21,21 @@ var event1 = new Vue({
             if (event)
                 event.preventDefault();
             alert(message)
+        },
+        doThis: function(e){
+            console.log("doing this");
+        },
+        doThat: function(e){
+            console.log("doing that");
+        },
+        key:function(e){
+            console.log("key 13 pressed")
         }
     }
 });
 
+// enable v-on:keyup.f1
+Vue.config.keyCodes.f1 = 112;
 
 // you can invoke methods in JavaScript too
 //event1.greet(); // -> 'Hello Vue.js!'
