@@ -427,9 +427,25 @@ To give Vue a hint so that it can track each node’s identity, and thus reuse a
     <li v-for="n in even(numbers)">{{n}}</li>
 </ul>
 
+<hr>
+<h2>Event Handling</h2>
 
+<h3>Listening to Events</h3>
+<p class="info">We can use the v-on directive to listen to DOM events and run some JavaScript when they’re triggered.</p>
 
-
+<div id="event1">
+    <button @click="counter += 1">Add 1</button>
+    <p>The button above has been clicked {{ counter }} times</p>
+    <h4>Method Event handler</h4>
+    <p class="info">The logic for many event handlers will be more complex though, so keeping your JavaScript in the value of the v-on attribute simply isn’t feasible. That’s why v-on can also accept the name of a method you’d like to call.</p>
+    <button @click="greet">Greet</button>
+    <h4>Methods in Inline Handler</h4>
+    <p class="info">Instead of binding directly to a method name, we can also use methods in an inline JavaScript statement:</p>
+    <button v-on:click="say('hi')">Say hi</button>
+    <button v-on:click="say('what')">Say what</button>
+    <p class="info">Sometimes we also need to access the original DOM event in an inline statement handler. You can pass it into a method using the special <span style="color: orange;">$event</span> variable:</p>
+    <button v-on:click="warn('Form cannot be submitted yet.', $event)">Submit</button>
+</div>
 
 
 
@@ -451,5 +467,7 @@ To give Vue a hint so that it can track each node’s identity, and thus reuse a
 <script src="js/class_style_binding.js"></script>
 <script src="js/conditional_rendering.js"></script>
 <script src="js/list_rendering.js"></script>
+<script src="js/event_handling.js"></script>
+
 </body>
 </html>
