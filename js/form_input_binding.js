@@ -18,3 +18,17 @@ var input1 = new Vue({
         ]
     }
 });
+
+var input2 = new Vue({
+   el:"#input2",
+    data:{
+        toggle:'',
+        toggles:'',
+        picked:'',
+        selected:'',
+        a:"truee",
+        b: "not true",
+        pick:'',
+        select:''
+    }
+});

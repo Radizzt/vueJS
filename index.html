@@ -567,9 +567,45 @@ To give Vue a hint so that it can track each node’s identity, and thus reuse a
         </option>
     </select>
     <span>Selected: {{ dynSelected }}</span>
-
 </div>
+<h2>Value Binding</h2>
+<p class="info">For radio, checkbox and select options, the <span class="orange">v-model</span> binding values are usually static strings (or booleans for checkbox):</p>
+<div id="input2">
+    <!-- `picked` is a string "a" when checked -->
+    <input type="radio" v-model="picked" value="a">
+    <span>{{picked}}</span>
+    <!-- `toggle` is either true or false -->
+    <input type="checkbox" v-model="toggle">
+    <span>{{toggle}}</span>
 
+    <!-- `selected` is a string "abc" when selected -->
+    <select v-model="selected">
+        <option value="abc">ABC</option>
+    </select>
+    <span>{{selected}}</span>
+
+    <p class="info">But sometimes we may want to bind the value to a dynamic property on the Vue instance. We can use <span class="orange">v-bind</span> to achieve that. In addition, using <span class="orange">v-bind</span> allows us to bind the input value to non-string values.</p>
+
+    <h3>Checkbox</h3>
+    <input
+            type="checkbox"
+            v-model="toggles"
+            v-bind:true-value="a"
+            v-bind:false-value="b"
+    >
+    <label for="checkbox">{{toggles}}</label>
+
+    <h3>Radio</h3>
+    <input type="radio" v-model="pick" v-bind:value="a">
+    <p>{{pick}}</p>
+    <h3>Select Options</h3>
+    <select v-model="select">
+        <!-- inline object literal -->
+        <option v-bind:value="{ number: 123 }">123</option>
+        <option v-bind:value="{ number: 234 }">234</option>
+    </select>
+    <p>{{select}}</p>
+</div>
 
 
 
