@@ -327,7 +327,7 @@
 <h2>List Rendering</h2>
 <h3>v-for</h3>
 <span class="info">
-    We can use the v-for directive to render a list of items based on an array. The v-for directive requires a special syntax in the form of item in items, where items is the source data array and item is an alias for the array element being iterated on:
+    We can use the <span class="orange">v-for</span> directive to render a list of items based on an array. The <span class="orange">v-for</span> directive requires a special syntax in the form of <span class="orange">item in items</span>, where <span class="orange">items</span> is the source data array and <span class="orange">item</span> is an alias for the array element being iterated on:
 </span>
 <h3>key</h3>
 <span class="info">When Vue is updating a list of elements rendered with v-for, it by default uses an “in-place patch” strategy. If the order of the data items has changed, instead of moving the DOM elements to match the order of the items, Vue will simply patch each element in-place and make sure it reflects what should be rendered at that particular index. This is similar to the behavior of track-by="$index" in Vue 1.x.
@@ -339,18 +339,18 @@ To give Vue a hint so that it can track each node’s identity, and thus reuse a
     </li>
     <!--support second argument for index number-->
     <h4>index</h4>
-    <p class="info">Inside v-for blocks we have full access to parent scope properties. v-for also supports an optional second argument for the index of the current item.</p>
+    <p class="info">Inside <span class="orange">v-for</span> blocks we have full access to parent scope properties. <span class="orange">v-for</span> also supports an optional second argument for the index of the current item.</p>
     <li v-for="(item, index) in items2">
         {{ parentMessage }} - {{index}} - {{ item.message}}
     </li>
     <!--template for v-for-->
     <h4>template v-for</h4>
-    <p class="info">Similar to template v-if, you can also use a &lt;template&gt; tag with v-for to render a block of multiple elements. For example:</p>
+    <p class="info">Similar to template <span class="orange">v-if</span>, you can also use a <span class="orange">&lt;template&gt;</span> tag with <span class="orange">v-for</span> to render a block of multiple elements. For example:</p>
     <template v-for="item in forItem">
         <li>{{item.msg}}</li>
     </template>
     <!--object v-for-->
-    <h4>object v-for</h4>
+    <h4>object <span class="orange">v-for</span></h4>
     <p class="info">You can also use v-for to iterate through the properties of an object.</p>
     <li v-for="value in object">
         {{value}}
@@ -362,13 +362,13 @@ To give Vue a hint so that it can track each node’s identity, and thus reuse a
         {{index}}. {{key}} : {{value}}
     </li>
     <!--range-->
-    <h4>Range v-for</h4>
+    <h4>Range <span class="orange">v-for</span></h4>
     <p class="info">v-for can also take an integer. In this case it will repeat the template that many times.
     <li>
         <span v-for="n in 10">{{ n }}</span>
     </li>
     <h4>v-for with v-if</h4>
-    <p class="info">When they exists on the same node, v-for has a higher priority than v-if. That means the v-if will be run on each iteration of the loop separately. This is very useful when you want to render nodes for only some items, like below:</p>
+    <p class="info">When they exists on the same node, <span class="orange">v-for</span> has a higher priority than <span class="orange">v-if</span>. That means the <span class="orange">v-if</span> will be run on each iteration of the loop separately. This is very useful when you want to render nodes for only some items, like below:</p>
     <li v-for="todo in todos" v-if="!todo.isComplete">
         {{ todo.duty }}
     </li>
@@ -378,7 +378,7 @@ To give Vue a hint so that it can track each node’s identity, and thus reuse a
 
 <!--component and v-for-->
 <h4>Component and v-for</h4>
-<p class="info">You can directly use v-for on a custom component, like any normal element:</p>
+<p class="info">You can directly use <span class="orange">v-for</span> on a custom component, like any normal element:</p>
 <div id="todo-list-example">
     <input
             v-model="newTodoText"
@@ -401,18 +401,18 @@ To give Vue a hint so that it can track each node’s identity, and thus reuse a
 <div class="info">
     <p>Vue wraps an observed array’s mutation methods so they will also trigger view updates. The wrapped methods are:</p>
     <ul>
-        <li>push()</li>
-        <li>pop()</li>
-        <li>shift()</li>
-        <li>unshift()</li>
-        <li>splice()</li>
-        <li>sort()</li>
-        <li>reverse()</li>
+        <li class="orange">push()</li>
+        <li class="orange">pop()</li>
+        <li class="orange">shift()</li>
+        <li class="orange">unshift()</li>
+        <li class="orange">splice()</li>
+        <li class="orange">sort()</li>
+        <li class="orange">reverse()</li>
     </ul>
-    <p>You can open the console and play with the previous examples’ items array by calling their mutation methods. For example: example1.items.push({ message: 'Baz' }).</p>
+    <p>You can open the console and play with the previous examples’ <span class="orange">items</span> array by calling their mutation methods. For example: <span class="orange">example1.items.push({ message: 'Baz' })</span>.</p>
 </div>
 <h4>Replacing an Array</h4>
-<p class="info">Mutation methods, as the name suggests, mutate the original array they are called on. In comparison, there are also non-mutating methods, e.g. filter(), concat() and slice(), which do not mutate the original Array but always return a new array.</p>
+<p class="info">Mutation methods, as the name suggests, mutate the original array they are called on. In comparison, there are also non-mutating methods, e.g. <span class="orange">filter()</span>, <span class="orange">concat()</span> and <span class="orange">slice()</span>, which do not mutate the original Array but always return a new array.</p>
 
 <ul id="for2">
     <button @click="replace">replace!</button>
@@ -431,13 +431,13 @@ To give Vue a hint so that it can track each node’s identity, and thus reuse a
 <h2>Event Handling</h2>
 
 <h3>Listening to Events</h3>
-<p class="info">We can use the v-on directive to listen to DOM events and run some JavaScript when they’re triggered.</p>
+<p class="info">We can use the <span class="orange">v-on</span> directive to listen to DOM events and run some JavaScript when they’re triggered.</p>
 
 <div id="event1">
     <button @click="counter += 1">Add 1</button>
     <p>The button above has been clicked {{ counter }} times</p>
     <h4>Method Event handler</h4>
-    <p class="info">The logic for many event handlers will be more complex though, so keeping your JavaScript in the value of the v-on attribute simply isn’t feasible. That’s why v-on can also accept the name of a method you’d like to call.</p>
+    <p class="info">The logic for many event handlers will be more complex though, so keeping your JavaScript in the value of the <span class="orange">v-on</span> attribute simply isn’t feasible. That’s why <span class="orange">v-on</span> can also accept the name of a method you’d like to call.</p>
     <button @click="greet">Greet</button>
     <h4>Methods in Inline Handler</h4>
     <p class="info">Instead of binding directly to a method name, we can also use methods in an inline JavaScript statement:</p>
@@ -607,6 +607,24 @@ To give Vue a hint so that it can track each node’s identity, and thus reuse a
     <p>{{select}}</p>
 </div>
 
+<h3>Modifiers</h3>
+<h3 class="orange">.lazy</h3>
+<p class="info">By default, <span class="orange">v-model</span> syncs the input with the data after each <span class="orange">input</span> event (with the exception of IME composition as stated above). You can add the <span class="orange">lazy</span> modifier to instead sync after <span class="orange">change</span> events:</p>
+<div id="input3">
+    <!-- synced after "change" instead of "input" -->
+    <input v-model.lazy="msg" >
+    <p>message: {{msg}}</p>
+    <h3 class="orange">.number</h3>
+    <p class="info">If you want user input to be automatically typecast as a number, you can add the <span class="orange">number</span> modifier to your <span class="orange">v-model</span> managed inputs:</p>
+    <input v-model.number="age" type="number">
+    <p>age: {{age}}</p>
+    <p class="info">This is often useful, because even with <span class="orange">type="number"</span>, the value of HTML input elements always returns a string.</p>
+
+    <h3 class="orange">.trim</h3>
+    <p class="info">If you want user input to be trimmed automatically, you can add the <span class="orange">trim</span> modifier to your <span class="orange">v-model</span> managed inputs:</p>
+    <input v-model.trim="msg">
+    <p>message: {{msg}}</p>
+</div>
 
 
 

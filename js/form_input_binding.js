@@ -32,3 +32,11 @@ var input2 = new Vue({
         select:''
     }
 });
+
+var input3 = new Vue({
+   el:"#input3",
+    data:{
+        msg:'',
+        age:''
+    }
+});
