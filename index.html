@@ -510,6 +510,70 @@ To give Vue a hint so that it can track each node’s identity, and thus reuse a
 
 </div>
 
+<hr>
+<h2>Form Input Binding</h2>
+<h3>Basic Usage</h3>
+<p class="info">You can use the v-model directive to create two-way data bindings on form input and textarea elements. It automatically picks the correct way to update the element based on the input type. Although a bit magical, v-model is essentially syntax sugar for updating data on user input events, plus special care for some edge cases.</p>
+
+<div id="input1">
+    <input v-model="message" placeholder="edit me">
+    <p>Message is: {{ message }}</p>
+
+    <span>Multiline message is:</span>
+    <p style="white-space: pre">{{ textAreaMessage }}</p>
+    <br>
+    <textarea v-model="textAreaMessage" placeholder="add multiple lines"></textarea>
+    <h3>Checkbox</h3>
+    <p class="info">Single checkbox, boolean value:</p>
+    <input type="checkbox" id="checkbox" v-model="checked">
+    <label for="checkbox">{{ checked }}</label>
+    <p class="info">Multiple checkboxes, bound to the same Array:</p>
+    <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+    <label for="jack">Jack</label>
+    <input type="checkbox" id="john" value="John" v-model="checkedNames">
+    <label for="john">John</label>
+    <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+    <label for="mike">Mike</label>
+    <br>
+    <span>Checked names: {{ checkedNames }}</span>
+    <h3>Radio</h3>
+    <input type="radio" id="one" value="One" v-model="picked">
+    <label for="one">One</label>
+    <br>
+    <input type="radio" id="two" value="Two" v-model="picked">
+    <label for="two">Two</label>
+    <br>
+    <span id="test">Picked: {{ picked }}</span>
+    <h3>Select</h3>
+    <p class="info">Single select:</p>
+    <select v-model="selected">
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+    </select>
+    <span>Selected: {{ selected }}</span>
+    <p class="info">Multiple select (bound to Array):</p>
+    <select v-model="multiSelect" multiple>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+    </select>
+    <br>
+    <span>Selected: {{ multiSelect }}</span>
+    <p class="info">Dynamic options rendered with <span class="orage">v-for</span>:</p>
+    <select v-model="dynSelected">
+        <option v-for="option in options" v-bind:value="option.value">
+            {{ option.text }}
+        </option>
+    </select>
+    <span>Selected: {{ dynSelected }}</span>
+
+</div>
+
+
+
+
+
 
 
 <script
@@ -531,6 +595,8 @@ To give Vue a hint so that it can track each node’s identity, and thus reuse a
 <script src="js/conditional_rendering.js"></script>
 <script src="js/list_rendering.js"></script>
 <script src="js/event_handling.js"></script>
+<script src="js/form_input_binding.js"></script>
+
 
 </body>
 </html>
