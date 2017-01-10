@@ -625,6 +625,42 @@ To give Vue a hint so that it can track each node’s identity, and thus reuse a
     <input v-model.trim="msg">
     <p>message: {{msg}}</p>
 </div>
+<hr>
+
+<h2>Components</h2>
+<p class="info">Components are one of the most powerful features of Vue. They help you extend basic HTML elements to encapsulate reusable code. At a high level, components are custom elements that Vue’s compiler attaches behavior to. In some cases, they may also appear as a native HTML element extended with the special <span class="orange">is</span> attribute.</p>
+
+<p class="info">To register a global component, you can use <span class="orange">Vue.component(tagName, options)</span>.</p>
+
+<p class="info">Once registered, a component can be used in an instance’s template as a custom element, <span class="orange">&lt;my-component&gt;&lt;/my-component&gt;</span>. Make sure the component is registered <span class="bold">before</span> you instantiate the root Vue instance.</p>
+
+<div id="component1">
+    <my-component></my-component>
+    <h3>Local Registration</h3>
+    <p class="info">You don’t have to register every component globally. You can make a component available only in the scope of another instance/component by registering it with the <span class="orange">components</span> instance option:</p>
+    <my-component2></my-component2>
+    <p class="info">The same encapsulation applies for other registerable Vue features, such as directives.</p>
+    <h3>DOM Template Parsing Caveats</h3>
+    <p class="info">When using the DOM as your template (e.g. using the <span class="orange">el</span> option to mount an element with existing content), you will be subject to some restrictions that are inherent to how HTML works, because Vue can only retrieve the template content after the browser has parsed and normalized it. Most notably, some elements such as<span class="orange"> &lt;ul&gt;</span>, <span class="orange">&lt;ol&gt;</span>, <span class="orange">&lt;table&gt;</span> and <span class="orange">&lt;select&gt;</span> have restrictions on what elements can appear inside them, and some elements such as <span class="orange">&lt;option&gt;></span> can only appear inside certain other elements.</p>
+    <table>
+        <my-row></my-row>
+    </table>
+    <p class="bold">It should be noted that these limitations do not apply if you are using string templates from one of the following sources:</p>
+    <ul>
+        <li class="orange">&lt;script type="text/x-template"&gt;</li>
+        <li>JavaScript inline template strings</li>
+        <li><span class="orange">.vue</span> components</li>
+    </ul>
+    <p>Therefore, prefer using string templates whenever possible.</p>
+    <h3><span class="orange">data </span>MUST Be a Function</h3>
+    <p class="info">Most of the options that can be passed into the Vue constructor can be used in a component, with one special case: <span class="orange">data</span> must be function.</p>
+    <simple-counter></simple-counter>
+    <simple-counter></simple-counter>
+    <simple-counter></simple-counter>
+    <p class="info">Components are meant to be used together, most commonly in parent-child relationships: component A may use component B in its own template. They inevitably need to communicate to one another: the parent may need to pass data down to the child, and the child may need to inform the parent of something that happened in the child. However, it is also very important to keep the parent and the child as decoupled as possible via a clearly-defined interface. This ensures each component’s code can be written and reasoned about in relative isolation, thus making them more maintainable and potentially easier to reuse.</p>
+    <p class="info">In Vue.js, the parent-child component relationship can be summarized as <span class="bold">props down, events up</span>. The parent passes data down to the child via <span class="bold">props</span>, and the child sends messages to the parent via <span class="bold">events</span>. Let’s see how they work next.</p>
+</div>
+
 
 
 
@@ -650,6 +686,8 @@ To give Vue a hint so that it can track each node’s identity, and thus reuse a
 <script src="js/list_rendering.js"></script>
 <script src="js/event_handling.js"></script>
 <script src="js/form_input_binding.js"></script>
+<script src="js/components.js"></script>
+
 
 
 </body>
