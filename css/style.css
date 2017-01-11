@@ -17,8 +17,13 @@ p{
 }
 
 .orange{
-    color: orange;
+    color: #e96900;
 }
+
+.green{
+    color: #42b983;
+}
+
 .active{
     color: greenyellow;
     font-weight:bold;
@@ -34,6 +39,10 @@ p{
 
 .bold{
     font-weight: bold;
+}
+
+.italic{
+    font-style: italic;
 }
 
 .noBtmMargin{
