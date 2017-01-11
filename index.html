@@ -719,6 +719,93 @@ To give Vue a hint so that it can track each node’s identity, and thus reuse a
         When a prop validation fails, Vue will produce a console warning (if using the development build).</p>
 </div>
 
+<h2>Custom Events</h2>
+<p class="info">We have learned that the parent can pass data down to the child using props, but how do we communicate back to the parent when something happens? This is where Vue’s custom event system comes in.</p>
+
+<h3>Using <span class="orange">v-on</span> with Custom Events</h3>
+<div class="info">
+    <p>Every Vue instance implements an events interface, which means it can:</p>
+    <ul>
+        <li>Listen to an event using <span class="orange">$on(eventName)</span></li>
+        <li>Trigger an event using <span class="orange">$emit(eventName)</span></li>
+    </ul>
+    <p>
+        *Note that Vue’s event system is separate from the browser’s <span class="green">EventTarget API</span>. Though they work similarly, <span class="orange">$on</span> and <span class="orange">$emit</span> are <span class="bold">not</span> aliases for <span class="orange">addEventListener</span> and <span class="orange">dispatchEvent</span>.
+    </p>
+    <p>In addition, a parent component can listen to the events emitted from a child component using <span class="orange">v-on</span> directly in the template where the child component is used.</p>
+
+</div>
+<div id="component3">
+    <p>{{ total }}</p>
+    <button-counter v-on:domincrement="incrementTotal"></button-counter>
+    <button-counter v-on:domincrement="incrementTotal"></button-counter>
+    <p class="info">In this example, it’s important to note that the child component is still completely decoupled from what happens outside of it. All it does is report information about its own activity, just in case a parent component might care.</p>
+
+    <h4 class="info bold">Binding Native Events to Components</h4>
+    <p class="info">There may be times when you want to listen for a native event on the root element of a component. In these cases, you can use the <span class="orange">.native</span> modifier for <span class="orange">v-on</span>. For example:
+        <br>
+        &lt;my-component v-on:click.native="doTheThing"&gt;&lt;/my-component&gt;
+    </p>
+    <h3>Form Input Components using Custom Events</h3>
+    <div class="info">
+        Custom events can also be used to create custom inputs that work with <span class="orange">v-model</span>.
+        <br>
+        <br>
+        &lt;input v-model="<span class="green">something</span>"&gt;
+        <br>
+        <br>
+        is just syntactic sugar for:
+        <br>
+        <br>
+        &lt;input v-bind:value="<span class="green">something</span>" v-on:input="<span class="green">something = $event.target.value</span>"&gt;
+        <br>
+        <br>
+        When used with a component, this simplifies to:
+        <br>
+        <br>
+        &lt;custom-input v-bind:value="<span span class="green">something</span>" v-on:input="<span span class="green">something = arguments[0]</span>"&gt;&lt;/custom-input&gt;
+        <br>
+        <br>
+        So for a component to work with <span class="orange">v-model</span>, it must:
+        <ul>
+            <li>accent a <span class="orange">value</span> prop</li>
+            <li>emit an <span class="orange">input</span> event with the new value</li>
+        </ul>
+        </p>
+    </div>
+</div>
+<div id="component4">
+    <currency-input
+            label="Price"
+            v-model="price"
+    ></currency-input>
+    <currency-input
+            label="Shipping"
+            v-model="shipping"
+    ></currency-input>
+    <currency-input
+            label="Handling"
+            v-model="handling"
+    ></currency-input>
+    <currency-input
+            label="Discount"
+            v-model="discount"
+    ></currency-input>
+
+    <p>Total: ${{ total }}</p>
+</div>
+
+<h3><a href="https://vuejs.org/v2/guide/components.html#Non-Parent-Child-Communication">Non Parent-Child Communication</a></h3>
+<p class="info">Sometimes two components may need to communicate with one-another but they are not parent/child to each other. In simple scenarios, you can use an empty Vue instance as a central event bus:</p>
+
+
+
+
+
+
+
+
+
 
 
 <script
@@ -732,6 +819,7 @@ To give Vue a hint so that it can track each node’s identity, and thus reuse a
 <!-- gives you the freedom to just use what you're familiar with. -->
 <script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
 <script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
+<script src="https://cdn.rawgit.com/chrisvfritz/5f0a639590d6e648933416f90ba7ae4e/raw/98739fb8ac6779cb2da11aaa9ab6032e52f3be00/currency-validator.js"></script>
 <script src="js/core.js"></script>
 <script src="js/instances.js"></script>
 <script src="js/syntax.js"></script>
